@@ -14,9 +14,10 @@ import PrivateRoute from '../components/login/privateRouter'
 class AppContainer extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props.history)
-
-    // this.props.history.push('/')
+    console.log(this.props)
+    if (this.props.user.loggedIn) {
+      this.props.history.push('/')
+    }
 
     // const { dispatch } = this.props
     this.props.history.listen((location, action) => {
