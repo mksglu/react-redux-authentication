@@ -16,7 +16,7 @@ class AppContainer extends Component {
     super(props)
     console.log(this.props.history)
 
-    this.props.history.push('/')
+    // this.props.history.push('/')
 
     // const { dispatch } = this.props
     this.props.history.listen((location, action) => {
