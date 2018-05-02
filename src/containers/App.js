@@ -16,6 +16,7 @@ class AppContainer extends Component {
     super(props)
     console.log(this.props)
     if (this.props.user.loggedIn) {
+      console.log('aman aman aman nereye geldik ? neresi burası ?')
       this.props.history.push('/')
     }
 

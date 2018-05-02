@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import Footer from './footer'
 import Brand from './brand'
@@ -39,6 +39,11 @@ class Login extends Component {
 
   render() {
     const { usernameOrEmail, password, submitted } = this.state
+
+    if (this.props.user.loggedIn) {
+      return <Redirect to="/" />
+    }
+
     return (
       <div className="card-wrapper">
         <Brand />
@@ -54,6 +59,7 @@ class Login extends Component {
                   id="email"
                   className="form-control"
                   name="usernameOrEmail"
+                  tabIndex={1}
                   required
                   autoFocus
                 />
@@ -70,6 +76,7 @@ class Login extends Component {
                   onChange={this.handleChange}
                   id="password"
                   className="form-control"
+                  tabIndex={2}
                   name="password"
                   required
                   data-eye
@@ -81,7 +88,7 @@ class Login extends Component {
                 </label>
               </div>
               <div className="form-group no-margin">
-                <button type="submit" className="btn btn-primary btn-block">
+                <button type="submit" tabIndex={3} className="btn btn-primary btn-block">
                   Login
                 </button>
               </div>
