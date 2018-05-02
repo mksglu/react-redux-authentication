@@ -40,7 +40,7 @@ class Login extends Component {
   render() {
     const { usernameOrEmail, password, submitted } = this.state
 
-    if (this.props.user.loggedIn) {
+    if (this.props.user.authentication.loggedIn) {
       return <Redirect to="/" />
     }
 
