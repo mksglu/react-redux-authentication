@@ -1,0 +1,48 @@
+{
+  "name": "kanban",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Mert Köseoğlu",
+    "email": "info@mkoseoglu.com",
+    "url": "https://github.com/mksglu"
+  },
+  "scripts": {
+    "start": "cross-env NODE_ENV=development parcel src/index.html --no-cache",
+    "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url /"
+  },
+  "dependencies": {
+    "autoprefixer": "^8.1.0",
+    "axios": "^0.18.0",
+    "babel-preset-minify": "^0.3.0",
+    "cssnano": "^3.10.0",
+    "history": "^4.7.2",
+    "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.5",
+    "parcel-bundler": "^1.7.1",
+    "prop-types": "^15.6.0",
+    "qs": "^6.5.1",
+    "react": ">=15",
+    "react-dom": "^16.3.0-alpha.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-app": "^3.1.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.1.3",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0"
+  }
+}
