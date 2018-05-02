@@ -1,5 +1,5 @@
 // Core Import
-
+import authHeader from '../helpers/authHeader'
 import axios from 'axios'
 import decode from 'jwt-decode'
 // Constants
@@ -27,7 +27,6 @@ export const login = (username, password) => async (dispatch, getState) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     }
-
     return fetch(url, {
       headers,
       ...options,
@@ -47,7 +46,7 @@ export const login = (username, password) => async (dispatch, getState) => {
   const setToken = (idToken) => {
     localStorage.setItem('user', idToken)
   }
-  const getToken = () => localStorage.getItem('user')
+  const getToken = () => decode(localStorage.getItem('user'))
 
   return _fetch(`${ROOT_API}/loginCheck`, {
     method: 'POST',
@@ -58,5 +57,6 @@ export const login = (username, password) => async (dispatch, getState) => {
   }).then((res) => {
     setToken(res.token) // Setting the token in localStorage
     return Promise.resolve(res)
+    dispatch({ type: types.LOGIN_SUCCESS, payload: getToken })
   })
 }

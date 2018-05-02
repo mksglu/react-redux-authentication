@@ -1,7 +1,9 @@
-const authHeader = () => {
-  const user = JSON.parse(localStorage.getItem('user'))
+import decode from 'jwt-decode'
 
-  if (user && user.token) {
+const authHeader = () => {
+  const user = localStorage.getItem('user')
+
+  if (user && decode(user.userId) && decode(user.username)) {
     return { Authorization: `Bearer ${user.token}` }
   }
   return {}

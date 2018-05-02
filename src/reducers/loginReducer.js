@@ -1,11 +1,11 @@
+import decode from 'jwt-decode'
+
 import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../constants/loginConstants'
 
-// const user = JSON.parse(localStorage.getItem('user'))
-const user = localStorage.getItem('user')
+const user = decode(localStorage.getItem('user'))
+console.log(user.username)
 
-const initialState = user ? { loggedIn: true, user } : {}
-
-export default function authentication(state = initialState, action) {
+export default function authentication(state = {}, action) {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return {
