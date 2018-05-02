@@ -10,7 +10,7 @@ import * as types from '../constants/loginConstants'
 
 axios.defaults.headers.post['content-type'] = 'application/json'
 
-const ROOT_API = 'http://api.yorumsatiri.com'
+const ROOT_API = 'https://api.yorumsatiri.com'
 
 /* export const login = (usernameOrEmail, password) => async (dispatch, getState) => {
   const url = `${ROOT_API}/login_check`
