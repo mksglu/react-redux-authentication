@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
-import Logo from '../../img/logo.jpg'
+import React from 'react';
 
 const Brand = () => (
-  <div className="brand">
-    <img src={Logo} alt={'logo'} />
+  <div className="brand"> It's should be here logo.
   </div>
 )
 
