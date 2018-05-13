@@ -1,5 +1,6 @@
 import axios from 'axios'
 import * as types from '../constants/loginConstants'
+import history from '../utils/history'
 
 axios.defaults.headers.post['content-type'] = 'application/json'
 
@@ -11,7 +12,7 @@ const loginRequest = token => async (dispatch) => {
     const response = await axios.get(`${ROOT_API}/users`)
     localStorage.setItem('authentication', JSON.stringify({ token, ...response.data }))
     dispatch({ type: types.GETALL_SUCCESS, payload: response.data })
-    console.log('loginRequest')
+    history.push('/')
   } catch (error) {
     console.log(error)
   }
@@ -31,6 +32,7 @@ export const register = (email, password, name) => async (dispatch) => {
   try {
     await axios.post(`${ROOT_API}/user/register`, { email, password, name })
     dispatch({ type: types.REGISTER_SUCCESS })
+    history.push('/auth/login')
   } catch (err) {
     dispatch({ type: types.REGISTER_FAILURE, payload: err.message })
   }

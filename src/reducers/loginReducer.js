@@ -18,18 +18,20 @@ export default function authentication(state = initialState, action) {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return {}
-
     case LOGIN_FAILURE:
       return {
         err: action.payload,
       }
     case REGISTER_SUCCESS:
-      return { registed: true }
+      return {
+        registed: true,
+      }
     case REGISTER_FAILURE:
       return {}
     case GETALL_SUCCESS:
+      const name = action.payload.name || state.user.name
       return {
-        name: action.payload.name || state.user.name,
+        name,
         loggedIn: true,
       }
     case GETALL_FAILURE:

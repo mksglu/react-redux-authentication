@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import * as LoginAction from '../../actions/loginAction'
 import Brand from './brand'
@@ -33,13 +33,12 @@ class Register extends Component {
   }
   render() {
     const { email, password, name } = this.state
-    if (this.props.authentication.registed) {
-      return <Redirect to={{ pathname: '/auth/login', state: { from: this.props.location } }} />
-    }
+
     return (
       <div className="card-wrapper">
         <Brand />
         <div className="card fat">
+          Z
           <div className="card-body">
             <h4 className="card-title">Register</h4>
             <form onSubmit={this.handleSubmit}>
@@ -109,4 +108,4 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   authentication: state.authentication,
 })
-export default connect(mapStateToProps, mapDispatchToProps)(Register)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register))

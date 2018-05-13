@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import * as LoginAction from '../../actions/loginAction'
 import Brand from './brand'
@@ -36,9 +36,7 @@ class Login extends Component {
 
   render() {
     const { usernameOrEmail, password } = this.state
-    if (this.props.authentication.loggedIn) {
-      return <Redirect to={{ pathname: '/', state: { from: this.props.location } }} />
-    }
+
     return (
       <div className="card-wrapper">
         <Brand />

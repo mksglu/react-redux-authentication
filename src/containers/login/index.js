@@ -11,10 +11,10 @@ import '../../style/login/login.css'
 class LoginContainer extends Component {
   constructor(props) {
     super(props)
-    // console.log('aaaasasasasa', this.props)
+    console.log('aaaasasasasa', this.props)
 
     if (this.props.user.loggedIn) {
-      // this.props.history.push('/')
+      this.props.history.push('/')
     }
   }
   render() {
