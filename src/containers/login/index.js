@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
-import { Route, Switch, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-
-import '../../style/login/login.css'
-
+import { Route, Switch, withRouter } from 'react-router-dom'
 import Login from '../../components/login'
 import Forgot from '../../components/login/forgot'
 import Register from '../../components/login/register'
+import '../../style/login/login.css'
 
-export default class LoginContainer extends Component {
+class LoginContainer extends Component {
+  constructor(props) {
+    super(props)
+    if (this.props.user.loggedIn) {
+      this.props.history.push('/')
+    }
+  }
   render() {
     return (
       <div className="my-login-page">
@@ -27,3 +31,8 @@ export default class LoginContainer extends Component {
     )
   }
 }
+const mapStateToProps = state => ({
+  user: state.authentication,
+})
+
+export default withRouter(connect(mapStateToProps)(LoginContainer))

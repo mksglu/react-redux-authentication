@@ -1,62 +1,28 @@
-// Core Import
-import authHeader from '../helpers/authHeader'
 import axios from 'axios'
-import decode from 'jwt-decode'
-// Constants
-
 import * as types from '../constants/loginConstants'
-
-// Axios Config
 
 axios.defaults.headers.post['content-type'] = 'application/json'
 
-const ROOT_API = 'https://api.yorumsatiri.com'
+const ROOT_API = 'http://localhost:8000/api'
 
-/* export const login = (usernameOrEmail, password) => async (dispatch, getState) => {
-  const url = `${ROOT_API}/login_check`
-  const { username } = await axios({
-    method: 'post',
-    url,
-  })
-  dispatch({ type: types.LOGIN_SUCCESS, user: username })
-} */
-
-export const login = (username, password) => async (dispatch, getState) => {
-  const _fetch = (url, options) => {
-    const headers = {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    }
-    return fetch(url, {
-      headers,
-      ...options,
-    })
-      .then(checkStatus)
-      .then(response => response.json())
+const loginRequest = token => async (dispatch) => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`
+  try {
+    const response = await axios.get(`${ROOT_API}/users`)
+    localStorage.setItem('authentication', JSON.stringify({ token, user: response.data }))
+    dispatch({ type: types.GETALL_SUCCESS })
+    console.log('loginRequest')
+  } catch (error) {
+    console.log(error)
   }
+}
 
-  const checkStatus = (response) => {
-    if (response.status >= 200 && response.status < 300) {
-      return response
-    }
-    const error = new Error(response.statusText)
-    error.response = response
-    throw error
+export const login = (email, password) => async (dispatch) => {
+  try {
+    const response = await axios.post(`${ROOT_API}/user/login`, { email, password })
+    dispatch({ type: types.LOGIN_SUCCESS })
+    dispatch(loginRequest(response.data.token))
+  } catch (err) {
+    dispatch({ type: types.LOGIN_FAILURE, payload: err.message })
   }
-  const setToken = (idToken) => {
-    localStorage.setItem('user', idToken)
-  }
-  const getToken = () => decode(localStorage.getItem('user'))
-
-  return _fetch(`${ROOT_API}/loginCheck`, {
-    method: 'POST',
-    body: JSON.stringify({
-      username,
-      password,
-    }),
-  }).then((res) => {
-    setToken(res.token) // Setting the token in localStorage
-    return Promise.resolve(res)
-    dispatch({ type: types.LOGIN_SUCCESS, payload: getToken })
-  })
 }

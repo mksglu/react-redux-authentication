@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 
 class HomePage extends Component {
   render() {
-    console.log(this.props.user)
-    return `Hosgeldin: ${this.props.user.authentication.user}`
+    return `Hosgeldin: ${this.props.authentication.user.name}`
   }
 }
 
 const mapStateToProps = state => ({
-  user: state,
+  authentication: state.authentication,
 })
 export default connect(mapStateToProps)(HomePage)

@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { Link, Redirect } from 'react-router-dom'
-
-import Footer from './footer'
-import Brand from './brand'
-
+import { bindActionCreators } from 'redux'
 import * as LoginAction from '../../actions/loginAction'
+import Brand from './brand'
+import Footer from './footer'
 
 class Login extends Component {
   constructor(props) {
@@ -16,7 +14,6 @@ class Login extends Component {
       password: '',
       submitted: false,
     }
-    // this.props.dispatch(userActions.logout());
   }
 
   handleChange = (e) => {
@@ -32,18 +29,16 @@ class Login extends Component {
     // const { dispatch } = this.props
 
     if (usernameOrEmail && password) {
-      console.log('submitknk')
+      // console.log('submitknk')
       this.props.actions.login(usernameOrEmail, password)
     }
   }
 
   render() {
-    const { usernameOrEmail, password, submitted } = this.state
-
-    if (this.props.user.authentication.loggedIn) {
-      return <Redirect to="/" />
+    const { usernameOrEmail, password } = this.state
+    if (this.props.authentication.loggedIn) {
+      return <Redirect to={{ pathname: '/', state: { from: this.props.location } }} />
     }
-
     return (
       <div className="card-wrapper">
         <Brand />
@@ -108,6 +103,6 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(LoginAction, dispatch),
 })
 const mapStateToProps = state => ({
-  user: state,
+  authentication: state.authentication,
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
