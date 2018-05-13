@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 
 class HomePage extends Component {
   render() {
-    return `Hosgeldin: ${this.props.authentication.user.name}`
+    console.log(this.props.authentication)
+    return `Hosgeldin: ${this.props.authentication.name}`
   }
 }
 

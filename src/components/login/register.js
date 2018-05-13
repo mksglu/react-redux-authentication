@@ -1,31 +1,66 @@
 import React, { Component } from 'react'
-import Footer from './footer'
+import { connect } from 'react-redux'
+import { Link, Redirect } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
+import * as LoginAction from '../../actions/loginAction'
 import Brand from './brand'
-import { Link } from 'react-router-dom'
+import Footer from './footer'
 
-export default class Register extends Component {
+class Register extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      name: '',
+      password: '',
+      submitted: false,
+    }
+  }
+  handleChange = (e) => {
+    const { name, value } = e.target
+    this.setState({ [name]: value })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+
+    this.setState({ submitted: true })
+    const { email, password, name } = this.state
+
+    if (email && password && name) {
+      this.props.actions.register(email, password, name)
+    }
+  }
   render() {
+    const { email, password, name } = this.state
+    if (this.props.authentication.registed) {
+      return <Redirect to={{ pathname: '/auth/login', state: { from: this.props.location } }} />
+    }
     return (
       <div className="card-wrapper">
         <Brand />
         <div className="card fat">
           <div className="card-body">
             <h4 className="card-title">Register</h4>
-            <form method="POST">
+            <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label htmlFor="name">Name</label>
                 <input
+                  value={name}
+                  onChange={this.handleChange}
                   id="name"
                   type="text"
                   className="form-control"
                   name="name"
                   required
-                  autofocus
+                  autoFocus
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="email">E-Mail Address</label>
                 <input
+                  value={email}
+                  onChange={this.handleChange}
                   id="email"
                   type="email"
                   className="form-control"
@@ -36,6 +71,8 @@ export default class Register extends Component {
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <input
+                  value={password}
+                  onChange={this.handleChange}
                   id="password"
                   type="password"
                   className="form-control"
@@ -46,8 +83,8 @@ export default class Register extends Component {
               </div>
               <div className="form-group">
                 <label>
-                  <input type="checkbox" name="aggree" defaultValue={1} /> I
-                  agree to the Terms and Conditions
+                  <input type="checkbox" name="aggree" defaultValue={1} /> I agree to the Terms and
+                  Conditions
                 </label>
               </div>
               <div className="form-group no-margin">
@@ -56,7 +93,7 @@ export default class Register extends Component {
                 </button>
               </div>
               <div className="margin-top20 text-center">
-                Already have an account? <Link to="/">Login</Link>
+                Already have an account? <Link to="/auth/login">Login</Link>
               </div>
             </form>
           </div>
@@ -66,3 +103,10 @@ export default class Register extends Component {
     )
   }
 }
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(LoginAction, dispatch),
+})
+const mapStateToProps = state => ({
+  authentication: state.authentication,
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

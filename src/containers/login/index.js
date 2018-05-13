@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
+import * as LoginAction from '../../actions/loginAction'
 import Login from '../../components/login'
 import Forgot from '../../components/login/forgot'
 import Register from '../../components/login/register'
@@ -9,8 +11,10 @@ import '../../style/login/login.css'
 class LoginContainer extends Component {
   constructor(props) {
     super(props)
+    // console.log('aaaasasasasa', this.props)
+
     if (this.props.user.loggedIn) {
-      this.props.history.push('/')
+      // this.props.history.push('/')
     }
   }
   render() {
@@ -21,6 +25,18 @@ class LoginContainer extends Component {
             <div className="row justify-content-md-center h-100">
               <Switch>
                 <Route path="/auth/login" component={Login} />
+                <Route
+                  path="/auth/logout"
+                  render={() => {
+                    this.props.actions.logout()
+                    localStorage.removeItem('authentication')
+                    return (
+                      <Redirect
+                        to={{ pathname: '/auth/login', state: { from: this.props.location } }}
+                      />
+                    )
+                  }}
+                />
                 <Route path="/auth/forgot" component={Forgot} />
                 <Route path="/auth/register" component={Register} />
               </Switch>
@@ -31,8 +47,13 @@ class LoginContainer extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  x: () => dispatch(LoginAction.logout()),
+  actions: bindActionCreators(LoginAction, dispatch),
+})
 const mapStateToProps = state => ({
   user: state.authentication,
 })
 
-export default withRouter(connect(mapStateToProps)(LoginContainer))
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
