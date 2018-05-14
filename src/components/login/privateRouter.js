@@ -4,7 +4,6 @@ import { Redirect, Route } from 'react-router-dom'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { authentication } = rest
-  console.log(authentication.loggedIn)
   return (
     <Route
       {...rest}

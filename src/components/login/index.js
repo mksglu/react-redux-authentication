@@ -26,10 +26,8 @@ class Login extends Component {
 
     this.setState({ submitted: true })
     const { usernameOrEmail, password } = this.state
-    // const { dispatch } = this.props
 
     if (usernameOrEmail && password) {
-      // console.log('submitknk')
       this.props.actions.login(usernameOrEmail, password)
     }
   }

@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import * as LoginAction from '../../actions/loginAction'
 
 class Logout extends Component {
-  constructor(props) {
-    super(props)
-    this.props.x()
+  componentDidMount() {
+    this.props.actions.logout()
   }
   render() {
-    return <div>s</div>
+    return <h1 className="loading-text">Logging out...</h1>
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  x: () => dispatch(LoginAction.logout()),
+  actions: bindActionCreators(LoginAction, dispatch),
 })
 
 export default connect(null, mapDispatchToProps)(Logout)

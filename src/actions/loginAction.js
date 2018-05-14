@@ -35,5 +35,8 @@ export const register = (email, password, name) => async (dispatch) => {
 }
 
 export const logout = () => async (dispatch) => {
+  localStorage.removeItem('authentication')
+  localStorage.removeItem('token')
+  history.push('/auth/login')
   dispatch({ type: types.LOGOUT })
 }
