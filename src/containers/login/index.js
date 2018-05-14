@@ -11,7 +11,6 @@ import '../../style/login/login.css'
 class LoginContainer extends Component {
   constructor(props) {
     super(props)
-    console.log('aaaasasasasa', this.props)
 
     if (this.props.user.loggedIn) {
       this.props.history.push('/')
@@ -49,7 +48,6 @@ class LoginContainer extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  x: () => dispatch(LoginAction.logout()),
   actions: bindActionCreators(LoginAction, dispatch),
 })
 const mapStateToProps = state => ({
