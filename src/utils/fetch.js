@@ -1,12 +1,9 @@
 import axios from 'axios'
 
-export default () => {
-  const persistedState = localStorage.getItem('authentication')
-    ? JSON.parse(localStorage.getItem('authentication'))
-    : null
-  return axios.create({
-    headers: {
-      Authorization: `Bearer ${persistedState.token}`, // eslint-disable-line no-undef
-    },
-  })
-}
+export default axios.create({
+  baseURL: process.env.NODE_ENV !== 'production' ? 'http://localhost:8000/api' : '',
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+    'content-type': 'application/json',
+  },
+})

@@ -1,19 +1,12 @@
-import axios from 'axios'
 import * as types from '../constants/loginConstants'
-import { _fetch } from '../utils/fetch'
+import API from '../utils/fetch'
 import history from '../utils/history'
 
-axios.defaults.headers.post['content-type'] = 'application/json'
-
-const ROOT_API = 'http://localhost:8000/api'
-
-const loginRequest = token => async (dispatch) => {
-  // axios.defaults.headers.common.Authorization = `Bearer ${token}`
-
+const loginRequest = () => async (dispatch) => {
   try {
-    const { data } = await _fetch.get(`${ROOT_API}/users`)
-    localStorage.setItem('authentication', JSON.stringify({ ...data }))
-    dispatch({ type: types.GETALL_SUCCESS, payload: data })
+    const response = await API.get('/users')
+    localStorage.setItem('authentication', JSON.stringify({ ...response.data }))
+    dispatch({ type: types.GETALL_SUCCESS, payload: response.data })
     history.push('/')
   } catch (error) {
     console.log(error)
@@ -22,10 +15,10 @@ const loginRequest = token => async (dispatch) => {
 
 export const login = (email, password) => async (dispatch) => {
   try {
-    const { data } = await axios.post(`${ROOT_API}/user/login`, { email, password })
-    localStorage.setItem('authentication', JSON.stringify({ data }))
+    const { data } = await API.post('/user/login', { email, password })
+    localStorage.setItem('token', data.token)
     dispatch({ type: types.LOGIN_SUCCESS })
-    dispatch(loginRequest(data.token))
+    dispatch(loginRequest())
   } catch (err) {
     dispatch({ type: types.LOGIN_FAILURE, payload: err.message })
   }
@@ -33,7 +26,7 @@ export const login = (email, password) => async (dispatch) => {
 
 export const register = (email, password, name) => async (dispatch) => {
   try {
-    await axios.post(`${ROOT_API}/user/register`, { email, password, name })
+    await API.post('/user/register', { email, password, name })
     dispatch({ type: types.REGISTER_SUCCESS })
     history.push('/auth/login')
   } catch (err) {
