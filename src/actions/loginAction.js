@@ -2,6 +2,10 @@ import * as types from '../constants/loginConstants'
 import API from '../utils/fetch'
 import history from '../utils/history'
 
+export const getUser = () => async (dispatch) => {
+  const user = JSON.parse(localStorage.getItem('authentication'))
+  dispatch({ type: types.GET_USER, payload: user })
+}
 const loginRequest = () => async (dispatch) => {
   try {
     const response = await API.get('/users')
@@ -37,6 +41,6 @@ export const register = (email, password, name) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   localStorage.removeItem('authentication')
   localStorage.removeItem('token')
-  history.push('/auth/login')
   dispatch({ type: types.LOGOUT })
+  history.push('/auth/login')
 }

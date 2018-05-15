@@ -1,6 +1,7 @@
 import {
   GETALL_FAILURE,
   GETALL_SUCCESS,
+  GET_USER,
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
   LOGOUT,
@@ -8,16 +9,19 @@ import {
   REGISTER_SUCCESS,
 } from '../constants/loginConstants'
 
-const persistedState = localStorage.getItem('authentication')
-  ? JSON.parse(localStorage.getItem('authentication'))
-  : null
-
-const initialState = persistedState ? { loggedIn: true, ...persistedState } : {}
+const initialState = localStorage.getItem('token') ? { loggedIn: true } : {}
 
 export default function authentication(state = initialState, action) {
   switch (action.type) {
+    case GET_USER:
+      return {
+        ...state,
+        ...action.payload,
+      }
     case LOGIN_SUCCESS:
-      return {}
+      return {
+        loggedIn: true,
+      }
     case LOGIN_FAILURE:
       return {
         err: action.payload,
@@ -29,15 +33,15 @@ export default function authentication(state = initialState, action) {
     case REGISTER_FAILURE:
       return {}
     case GETALL_SUCCESS:
-      const name = action.payload.name || state.user.name
       return {
-        name,
-        loggedIn: true,
+        ...state,
       }
     case GETALL_FAILURE:
       return {}
     case LOGOUT:
-      return { loggedIn: false }
+      return {
+        loggedIn: false,
+      }
     default:
       return state
   }
