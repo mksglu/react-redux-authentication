@@ -21,7 +21,7 @@ export default function authentication(state = initialState, action) {
         ...action.payload,
       }
     case LOGIN_SUCCESS:
-      return { token: action.payload.token, loggedIn: true }
+      return { token: action.payload.token }
     case LOGIN_FAILURE:
       return {
         loggedIn: false,
