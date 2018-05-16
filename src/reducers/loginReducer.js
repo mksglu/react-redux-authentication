@@ -9,21 +9,22 @@ import {
   REGISTER_SUCCESS,
 } from '../constants/loginConstants'
 
-const initialState = localStorage.getItem('token') ? { loggedIn: true } : {}
+const isLogin = !!(localStorage.getItem('token') && localStorage.getItem('authentication'))
+console.log('isLogin', isLogin)
+const initialState = isLogin ? { loggedIn: true } : { loggedIn: false }
 
 export default function authentication(state = initialState, action) {
   switch (action.type) {
     case GET_USER:
       return {
-        ...state,
+        loggedIn: true,
         ...action.payload,
       }
     case LOGIN_SUCCESS:
-      return {
-        loggedIn: true,
-      }
+      return { token: action.payload.token, loggedIn: true }
     case LOGIN_FAILURE:
       return {
+        loggedIn: false,
         err: action.payload,
       }
     case REGISTER_SUCCESS:
@@ -34,7 +35,7 @@ export default function authentication(state = initialState, action) {
       return {}
     case GETALL_SUCCESS:
       return {
-        ...state,
+        loggedIn: true,
       }
     case GETALL_FAILURE:
       return {}

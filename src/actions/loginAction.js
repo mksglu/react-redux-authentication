@@ -6,23 +6,23 @@ export const getUser = () => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem('authentication'))
   dispatch({ type: types.GET_USER, payload: user })
 }
-const loginRequest = () => async (dispatch) => {
+const loginRequest = token => async (dispatch) => {
   try {
     const response = await API.get('/users')
     localStorage.setItem('authentication', JSON.stringify({ ...response.data }))
-    dispatch({ type: types.GETALL_SUCCESS, payload: response.data })
+    dispatch({ type: types.GETALL_SUCCESS })
     history.push('/')
   } catch (error) {
     console.log(error)
   }
 }
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (email, password) => async (dispatch, getState) => {
   try {
     const { data } = await API.post('/user/login', { email, password })
     localStorage.setItem('token', data.token)
-    dispatch({ type: types.LOGIN_SUCCESS })
-    dispatch(loginRequest())
+    dispatch({ type: types.LOGIN_SUCCESS, payload: data })
+    dispatch(loginRequest(data.token))
   } catch (err) {
     dispatch({ type: types.LOGIN_FAILURE, payload: err.message })
   }
