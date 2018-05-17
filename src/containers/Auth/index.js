@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 import Login from '../../components/Auth/Pages/Login'
 import Logout from '../../components/Auth/Pages/Logout'
 import Register from '../../components/Auth/Pages/Register'
-import '../../style/Auth/Login.css'
+import '../../style/Auth/Auth.css'
 import history from '../../utils/HistoryUtils'
 
 class LoginContainer extends Component {

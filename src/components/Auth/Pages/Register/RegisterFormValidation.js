@@ -1,8 +1,12 @@
 export default (values) => {
   const errors = {}
 
-  if (!values.usernameOrEmail) {
-    errors.usernameOrEmail = 'Username or email equired'
+  if (!values.name) {
+    errors.name = 'Username or email equired'
+  }
+
+  if (!values.email) {
+    errors.email = 'Email required'
   }
 
   if (!values.password) {

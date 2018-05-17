@@ -64,3 +64,8 @@ div.my-login-page {
   color: #888;
   text-align: center;
 }
+
+input[type='password'] {
+  -webkit-text-security: disc;
+  -moz-text-security: disc;
+}

@@ -33,13 +33,16 @@ export default function authentication(state = initialState, action) {
     case '@@redux-form/CHANGE':
       return {
         loginFailed: false,
+        registerFailed: false,
       }
     case REGISTER_SUCCESS:
       return {
         registed: true,
       }
     case REGISTER_FAILURE:
-      return {}
+      return {
+        registerFailed: true,
+      }
     case GETALL_SUCCESS:
       return {
         loggedIn: true,

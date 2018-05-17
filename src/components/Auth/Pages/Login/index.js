@@ -4,13 +4,13 @@ import { bindActionCreators } from 'redux'
 import * as LoginAction from '../../../../actions/LoginAction'
 import Brand from '../../Brand'
 import Footer from '../../Footer'
-import LoginForm from './loginForm'
+import LoginForm from './LoginForm'
 
 class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      usernameOrEmail: '',
+      email: '',
       password: '',
       submitted: false,
     }
@@ -21,8 +21,8 @@ class Login extends Component {
   }
 
   handleSubmit = (values) => {
-    const { usernameOrEmail, password } = values
-    this.props.actions.login(usernameOrEmail, password) // run
+    const { email, password } = values
+    this.props.actions.login(email, password) // run
   }
 
   render() {
