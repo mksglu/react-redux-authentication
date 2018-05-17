@@ -5,7 +5,6 @@ import * as LoginAction from '../../../../actions/LoginAction'
 
 class Logout extends Component {
   componentDidMount() {
-    console.log('hey')
     this.props.actions.logout()
   }
   render() {

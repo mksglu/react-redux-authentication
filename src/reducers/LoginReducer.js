@@ -10,7 +10,6 @@ import {
 } from '../constants/LoginConstants'
 
 const isLogin = !!(localStorage.getItem('token') && localStorage.getItem('authentication'))
-console.log('isLogin', isLogin)
 const initialState = isLogin ? { loggedIn: true } : { loggedIn: false }
 
 export default function authentication(state = initialState, action) {
