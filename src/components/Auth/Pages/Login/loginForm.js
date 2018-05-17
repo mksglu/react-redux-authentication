@@ -3,8 +3,6 @@ import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router-dom'
 import validate from './loginFormValidation'
 import TextField from '../../Particles/ReduxFormFields/TextField'
-// chrome
-// bunu sonra baska dosyaya tasirsin
 
 const LoginForm = ({ handleSubmit, isLoginFailed }) => (
   <form onSubmit={e => handleSubmit(e)}>
