@@ -15,6 +15,9 @@ class LoginContainer extends Component {
     if (this.props.user.loggedIn) {
       history.push('/')
     }
+    history.listen((location, action) => {
+      console.log(action, location.pathname, location.state)
+    })
   }
   render() {
     return (

@@ -38,7 +38,6 @@ class Register extends Component {
       <div className="card-wrapper">
         <Brand />
         <div className="card fat">
-          Z
           <div className="card-body">
             <h4 className="card-title">Register</h4>
             <form onSubmit={this.handleSubmit}>
@@ -80,12 +79,7 @@ class Register extends Component {
                   data-eye
                 />
               </div>
-              <div className="form-group">
-                <label>
-                  <input type="checkbox" name="aggree" defaultValue={1} /> I agree to the Terms and
-                  Conditions
-                </label>
-              </div>
+
               <div className="form-group no-margin">
                 <button type="submit" className="btn btn-primary btn-block">
                   Register

@@ -21,10 +21,14 @@ export default function authentication(state = initialState, action) {
         ...action.payload,
       }
     case LOGIN_SUCCESS:
-      return { token: action.payload.token }
+      return {
+        token: action.payload.token,
+        loader: true,
+      }
     case LOGIN_FAILURE:
       return {
         loggedIn: false,
+        loginFailed: true,
         err: action.payload,
       }
     case REGISTER_SUCCESS:
@@ -36,6 +40,7 @@ export default function authentication(state = initialState, action) {
     case GETALL_SUCCESS:
       return {
         loggedIn: true,
+        loader: false,
       }
     case GETALL_FAILURE:
       return {}

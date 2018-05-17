@@ -43,7 +43,7 @@ export const register = (email, password, username) => async (dispatch) => {
   try {
     await API.post('Users', { email, password, username })
     dispatch({ type: types.REGISTER_SUCCESS })
-    history.push('/auth/login')
+    history.push('/auth/login', { register: 'success' })
   } catch (err) {
     dispatch({ type: types.REGISTER_FAILURE, payload: err.message })
   }
