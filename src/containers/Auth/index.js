@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import Forgot from '../../components/Auth/Pages/Forgot'
 import Login from '../../components/Auth/Pages/Login'
 import Logout from '../../components/Auth/Pages/Logout'
 import Register from '../../components/Auth/Pages/Register'
@@ -16,7 +15,7 @@ class LoginContainer extends Component {
       history.push('/')
     }
     history.listen((location, action) => {
-      console.log(action, location.pathname, location.state)
+      // console.log(action, location.pathname, location.state)
     })
   }
   render() {
@@ -28,7 +27,6 @@ class LoginContainer extends Component {
               <Switch>
                 <Route path="/auth/login" component={Login} />
                 <Route path="/auth/logout" component={Logout} />
-                <Route path="/auth/forgot" component={Forgot} />
                 <Route path="/auth/register" component={Register} />
               </Switch>
             </div>
