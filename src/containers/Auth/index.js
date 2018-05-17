@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import Login from '../../components/login'
-import Forgot from '../../components/login/forgot'
-import Logout from '../../components/login/logout'
-import Register from '../../components/login/register'
-import '../../style/login/login.css'
-import history from '../../utils/history'
+import Forgot from '../../components/Auth/Pages/Forgot'
+import Login from '../../components/Auth/Pages/Login'
+import Logout from '../../components/Auth/Pages/Logout'
+import Register from '../../components/Auth/Pages/Register'
+import '../../style/Auth/Login.css'
+import history from '../../utils/HistoryUtils'
 
 class LoginContainer extends Component {
   constructor(props) {

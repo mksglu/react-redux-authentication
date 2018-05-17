@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as LoginAction from '../../../actions/loginAction'
+import * as LoginAction from '../../../actions/LoginAction'
 
 class HomePage extends Component {
   componentDidMount() {

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Router, Switch, withRouter } from 'react-router-dom'
-import About from '../components/Pages/About'
-import HomePage from '../components/Pages/Home'
-import PrivateRoute from '../components/login/privateRouter'
-import history from '../utils/history'
-import Login from './login'
+import Login from '../Auth'
+import PrivateRoute from '../../components/Auth/Route/PrivateRouter'
+import About from '../../components/Pages/About'
+import HomePage from '../../components/Pages/Home'
+import history from '../../utils/HistoryUtils'
 
 class AppContainer extends Component {
   render() {

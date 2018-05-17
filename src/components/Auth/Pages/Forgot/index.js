@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import Footer from './footer'
-import Brand from './brand'
+import Brand from '../../Brand'
+import Footer from '../../Footer'
+
 export default class Forgot extends Component {
   render() {
     return (
@@ -19,11 +20,10 @@ export default class Forgot extends Component {
                   name="email"
                   defaultValue
                   required
-                  autofocus
+                  autoFocus
                 />
                 <div className="form-text text-muted">
-                  By clicking "Reset Password" we will send a password reset
-                  link
+                  By clicking "Reset Password" we will send a password reset link
                 </div>
               </div>
               <div className="form-group no-margin">

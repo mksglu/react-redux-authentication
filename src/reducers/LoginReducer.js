@@ -7,7 +7,7 @@ import {
   LOGOUT,
   REGISTER_FAILURE,
   REGISTER_SUCCESS,
-} from '../constants/loginConstants'
+} from '../constants/LoginConstants'
 
 const isLogin = !!(localStorage.getItem('token') && localStorage.getItem('authentication'))
 console.log('isLogin', isLogin)

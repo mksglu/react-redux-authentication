@@ -9,6 +9,7 @@
         "object": true
       }
     ],
+    "eol-last": 0,
     "import/prefer-default-export": "off",
     "no-underscore-dangle": "off",
     "no-case-declarations": "off",

@@ -1,6 +1,6 @@
-import * as types from '../constants/loginConstants'
-import API from '../utils/fetch'
-import history from '../utils/history'
+import * as types from '../constants/LoginConstants'
+import API from '../utils/FetchUtils'
+import history from '../utils/HistoryUtils'
 
 export const getUser = () => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem('authentication'))
@@ -60,5 +60,6 @@ export const logout = () => async (dispatch) => {
     if (err.response.status === 401) {
       history.push('/auth/login')
     }
+    console.log(err)
   }
 }

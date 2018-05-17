@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
-import * as LoginAction from '../../actions/loginAction'
-import Brand from './brand'
-import Footer from './footer'
+import * as LoginAction from '../../../../actions/LoginAction'
+import Brand from '../../Brand'
+import Footer from '../../Footer'
 
-class Register extends Component {
+class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      email: '',
-      name: '',
+      usernameOrEmail: '',
       password: '',
       submitted: false,
     }
   }
+
   handleChange = (e) => {
     const { name, value } = e.target
     this.setState({ [name]: value })
@@ -25,56 +25,49 @@ class Register extends Component {
     e.preventDefault()
 
     this.setState({ submitted: true })
-    const { email, password, name } = this.state
+    const { usernameOrEmail, password } = this.state
 
-    if (email && password && name) {
-      this.props.actions.register(email, password, name)
+    if (usernameOrEmail && password) {
+      this.props.actions.login(usernameOrEmail, password)
     }
   }
+
   render() {
-    const { email, password, name } = this.state
+    const { usernameOrEmail, password } = this.state
 
     return (
       <div className="card-wrapper">
         <Brand />
         <div className="card fat">
-          Z
           <div className="card-body">
-            <h4 className="card-title">Register</h4>
+            <h4 className="card-title">Login</h4>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="email">Username Or E-Mail Address</label>
                 <input
-                  value={name}
+                  value={usernameOrEmail}
                   onChange={this.handleChange}
-                  id="name"
-                  type="text"
+                  id="email"
                   className="form-control"
-                  name="name"
+                  name="usernameOrEmail"
+                  tabIndex={1}
                   required
                   autoFocus
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="email">E-Mail Address</label>
-                <input
-                  value={email}
-                  onChange={this.handleChange}
-                  id="email"
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">
+                  Password
+                  <Link to="/auth/forgot" className="float-right">
+                    Forgot Password?
+                  </Link>
+                </label>
                 <input
                   value={password}
                   onChange={this.handleChange}
                   id="password"
-                  type="password"
                   className="form-control"
+                  tabIndex={2}
                   name="password"
                   required
                   data-eye
@@ -82,17 +75,16 @@ class Register extends Component {
               </div>
               <div className="form-group">
                 <label>
-                  <input type="checkbox" name="aggree" defaultValue={1} /> I agree to the Terms and
-                  Conditions
+                  <input type="checkbox" name="remember" /> Remember Me
                 </label>
               </div>
               <div className="form-group no-margin">
-                <button type="submit" className="btn btn-primary btn-block">
-                  Register
+                <button type="submit" tabIndex={3} className="btn btn-primary btn-block">
+                  Login
                 </button>
               </div>
               <div className="margin-top20 text-center">
-                Already have an account? <Link to="/auth/login">Login</Link>
+                Don't have an account? <Link to="/auth/register">Create One</Link>
               </div>
             </form>
           </div>
@@ -102,10 +94,11 @@ class Register extends Component {
     )
   }
 }
+
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(LoginAction, dispatch),
 })
 const mapStateToProps = state => ({
   authentication: state.authentication,
 })
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register))
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
