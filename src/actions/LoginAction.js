@@ -51,7 +51,6 @@ export const register = (email, password, username) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    await API.post('Users/logout')
     localStorage.removeItem('authentication')
     localStorage.removeItem('token')
     dispatch({ type: types.LOGOUT })
