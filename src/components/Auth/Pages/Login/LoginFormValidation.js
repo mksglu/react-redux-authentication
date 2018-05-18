@@ -1,6 +1,5 @@
 export default (values) => {
   const errors = {}
-
   if (!values.email) {
     errors.email = 'email equired'
   }

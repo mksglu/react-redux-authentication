@@ -1,4 +1,4 @@
-import * as types from '../constants/LoginConstants'
+import * as types from '../constants/AuthConstants'
 import API from '../utils/FetchUtils'
 import history from '../utils/HistoryUtils'
 

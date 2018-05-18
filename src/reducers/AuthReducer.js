@@ -7,7 +7,7 @@ import {
   LOGOUT,
   REGISTER_FAILURE,
   REGISTER_SUCCESS,
-} from '../constants/LoginConstants'
+} from '../constants/AuthConstants'
 
 const isLogin = !!(localStorage.getItem('token') && localStorage.getItem('authentication'))
 const initialState = isLogin ? { loggedIn: true } : { loggedIn: false }
