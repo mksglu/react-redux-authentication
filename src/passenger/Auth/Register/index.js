@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as LoginAction from '../../../applications/actions/LoginAction'
+import * as AuthAction from '../../../applications/actions/AuthAction'
 
 import Brand from '../brand'
 import Footer from '../footer'
@@ -49,7 +49,7 @@ class Register extends Component {
   }
 }
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(LoginAction, dispatch),
+  actions: bindActionCreators(AuthAction, dispatch),
 })
 const mapStateToProps = state => ({
   authentication: state.authentication,

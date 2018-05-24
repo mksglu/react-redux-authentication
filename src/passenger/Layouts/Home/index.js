@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as LoginAction from '../../../applications/actions/LoginAction'
+import * as AuthAction from '../../../applications/actions/AuthAction'
 
 class HomePage extends Component {
   componentDidMount() {
@@ -15,7 +15,7 @@ class HomePage extends Component {
   }
 }
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(LoginAction, dispatch),
+  actions: bindActionCreators(AuthAction, dispatch),
 })
 
 const mapStateToProps = state => ({
