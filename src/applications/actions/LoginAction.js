@@ -1,6 +1,6 @@
 import * as types from '../constants/AuthConstants'
-import API from '../utils/FetchUtils'
-import history from '../utils/HistoryUtils'
+import API from '../../helpers/api'
+import history from '../../helpers/history'
 
 export const getUser = () => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem('authentication'))

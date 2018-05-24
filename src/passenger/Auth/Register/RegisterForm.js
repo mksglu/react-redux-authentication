@@ -1,10 +1,11 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router-dom'
+
 import validate from './RegisterFormValidation'
-import TextField from '../../Particles/ReduxFormFields/TextField'
-import Label from '../../Particles/Form/Label'
-import Button from '../../Particles/Form/Button'
+import TextField from '../../../elements/ReduxFormFields/TextField'
+import Label from '../../../elements/Form/Label'
+import Button from '../../../elements/Form/Button'
 
 const RegisterForm = ({ handleSubmit, isRegisterFailed }) => (
   <form onSubmit={e => handleSubmit(e)}>

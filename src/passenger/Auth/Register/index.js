@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as LoginAction from '../../../../actions/LoginAction'
-import Brand from '../../Brand'
-import Footer from '../../Footer'
+import * as LoginAction from '../../../applications/actions/LoginAction'
+
+import Brand from '../brand'
+import Footer from '../footer'
 import RegisterForm from './RegisterForm'
 
 class Register extends Component {

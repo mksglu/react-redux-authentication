@@ -1,5 +1,5 @@
 import React from 'react'
-import AuthLogo from '../../../img/AuthLogo.svg'
+import AuthLogo from '../../assets/img/logo.svg'
 
 const Brand = () => (
   <div className="brand">

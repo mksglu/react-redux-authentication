@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import Login from '../../components/Auth/Pages/Login'
-import Logout from '../../components/Auth/Pages/Logout'
-import Register from '../../components/Auth/Pages/Register'
-import '../../style/Auth/Auth.css'
-import history from '../../utils/HistoryUtils'
+
+import Passenger from '../passenger/Auth'
+import history from '../helpers/history'
+import HELPER_URL from '../helpers/url'
+
+import '../assets/style/auth.css'
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -14,7 +15,6 @@ class LoginContainer extends Component {
     if (this.props.user.loggedIn) {
       history.push('/')
     }
-    history.listen((location, action) => {})
   }
   render() {
     return (
@@ -23,9 +23,9 @@ class LoginContainer extends Component {
           <div className="container h-100">
             <div className="row justify-content-md-center h-100">
               <Switch>
-                <Route path="/auth/login" component={Login} />
-                <Route path="/auth/logout" component={Logout} />
-                <Route path="/auth/register" component={Register} />
+                <Route path={HELPER_URL.URLS.LOGIN} component={Passenger.Login} />
+                <Route path={HELPER_URL.URLS.LOGOUT} component={Passenger.Logout} />
+                <Route path={HELPER_URL.URLS.REGISTER} component={Passenger.Register} />
               </Switch>
             </div>
           </div>
